@@ -1,0 +1,1 @@
+INSERT INTO url_dict (short_url, long_url) VALUES ('erty22', 'github.com');
