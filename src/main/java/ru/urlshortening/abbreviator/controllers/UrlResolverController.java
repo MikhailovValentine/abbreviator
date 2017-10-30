@@ -30,4 +30,6 @@ public class UrlResolverController {
         response.setHeader("Location", "http://" + abbreviatorService.getURLForAbbreviation(shortURL));
         response.setStatus(301);
     }
+
+
 }

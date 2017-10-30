@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import ru.urlshortening.abbreviator.models.URLAbbreviation;
 import ru.urlshortening.abbreviator.repository.URLRepository;
 import ru.urlshortening.abbreviator.service.AddNewURLAbbreviation;
+import ru.urlshortening.abbreviator.service.InMemoryContainsURLChecker;
 import ru.urlshortening.abbreviator.service.URLAbbreviatorService;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -16,13 +17,17 @@ public class MultistorageURLAbbreviatorStorage implements URLAbbreviatorService,
     @Autowired
     private URLRepository storage;
 
+    @Autowired
+    private InMemoryContainsURLChecker<String> inMemoryContainsURLChecker;
+
     @Override
     public void addURLAbbreviation(URLAbbreviation abbreviation) {
-        throw new NotImplementedException();
+        storage.save(abbreviation);
     }
 
     @Override
     public String getURLForAbbreviation(String shortURL) {
+
         return storage.findByShortURL(shortURL).getRealURL();
     }
 }
